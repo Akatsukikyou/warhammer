@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>库存管理系统</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: center;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    input[type="number"], input[type="text"] {
+      width: 90%;
+    }
+    button {
+      margin: 10px 5px;
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>库存管理表</h2>
+  <button onclick="addRow()">➕ 添加物品</button>
+  <button onclick="exportCSV()">📤 导出 CSV</button>
+  <table id="inventory-table">
+    <thead>
+      <tr>
+        <th>物品名</th>
+        <th>总数</th>
+        <th>单价</th>
+        <th>成本</th>
+        <th>卖出</th>
+        <th>售价</th>
+        <th>剩余</th>
+        <th>收入</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+      <!-- 行将自动加载 -->
+    </tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
