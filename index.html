@@ -2,34 +2,21 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>库存管理系统</title>
+  <title>云端库存管理</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 6px;
-      text-align: center;
-    }
-    th {
-      background-color: #f0f0f0;
-    }
-    input[type="number"], input[type="text"] {
-      width: 90%;
-    }
-    button {
-      margin: 10px 5px;
-      padding: 5px 10px;
-    }
+    table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+    th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+    th { background-color: #f5f5f5; }
+    input { width: 80px; }
+    button { margin: 5px; padding: 5px 10px; }
   </style>
 </head>
 <body>
-  <h2>库存管理表</h2>
+  <h2>📦 云端库存管理系统</h2>
   <button onclick="addRow()">➕ 添加物品</button>
-  <button onclick="exportCSV()">📤 导出 CSV</button>
-  <table id="inventory-table">
+  <button onclick="loadData()">🔄 重新加载</button>
+  <table>
     <thead>
       <tr>
         <th>物品名</th>
@@ -43,11 +30,8 @@
         <th>操作</th>
       </tr>
     </thead>
-    <tbody id="table-body">
-      <!-- 行将自动加载 -->
-    </tbody>
+    <tbody id="table-body"></tbody>
   </table>
-
   <script src="script.js"></script>
 </body>
 </html>
