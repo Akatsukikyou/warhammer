@@ -1,6 +1,6 @@
 // 初始化 Supabase 客户端
 const SUPABASE_URL = 'https://ffpeqxwbrfenvrnjbdku.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // 为保护起见省略，建议正式部署前使用.env管理
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZmcGVxeHdicmZlbnZybmpiZGt1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ3MTI3MDUsImV4cCI6MjA2MDI4ODcwNX0.-Mug66vudsTk-FwX2QNtNC2RhFHPoc1T7qf7NN34_mc'; // 为保护起见省略，建议正式部署前使用.env管理
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // 加载数据
