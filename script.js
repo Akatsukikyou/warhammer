@@ -1,11 +1,13 @@
 // 初始化 Supabase 客户端
 const SUPABASE_URL = 'https://ffpeqxwbrfenvrnjbdku.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZmcGVxeHdicmZlbnZybmpiZGt1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ3MTI3MDUsImV4cCI6MjA2MDI4ODcwNX0.-Mug66vudsTk-FwX2QNtNC2RhFHPoc1T7qf7NN34_mc'; // 为保护起见省略，建议正式部署前使用.env管理
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const { createClient } = supabase;
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+
 
 // 加载数据
 async function loadData() {
-  const { data, error } = await supabase.from('items').select('*');
+  const { data, error } = await supabaseClient.from('items').select('*');
   if (error) {
     alert('❌ 加载失败: ' + error.message);
     return;
@@ -68,9 +70,9 @@ async function saveRow(button, id) {
 
   let result;
   if (id) {
-    result = await supabase.from('items').update(item).eq('id', id);
+    result = await supabaseClient.from('items').update(item).eq('id', id);
   } else {
-    result = await supabase.from('items').insert([item]).select(); // 👈 加了 select() 才能拿到 id
+    result = await supabaseClient.from('items').insert([item]).select(); // 👈 加了 select() 才能拿到 id
   }
 
 
@@ -89,7 +91,7 @@ async function saveRow(button, id) {
 // 删除记录
 async function deleteRow(id) {
   if (!confirm('确定要删除这项吗？')) return;
-  const { error } = await supabase.from('items').delete().eq('id', id);
+  const { error } = await supabaseClient.from('items').delete().eq('id', id);
   if (error) {
     alert('删除失败：' + error.message);
   } else {
