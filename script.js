@@ -73,12 +73,16 @@ async function saveRow(button, id) {
     result = await supabase.from('items').insert([item]).select(); // 👈 加了 select() 才能拿到 id
   }
 
+
   if (result.error) {
-    alert('❌ 保存失败：' + result.error.message);
+    console.error('save fail：', result.error);
+    alert('save fail：' + result.error.message);
   } else {
-    alert('✅ 保存成功');
-    loadData(); // 👈 重新加载表格，确保页面同步数据库数据
+    console.log('success：', result.data); // 👈 加这个！
+    alert('success');
+    loadData();
   }
+  
 }
 
 
