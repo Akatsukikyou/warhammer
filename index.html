@@ -2,24 +2,37 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>云端库存管理</title>
+  <title>库存管理（状态+排序+批量）</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <style>
     table { border-collapse: collapse; width: 100%; margin-top: 10px; }
     th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
-    th { background-color: #f5f5f5; }
-    input { width: 80px; }
-    button { margin: 5px; padding: 5px 10px; }
+    th { background-color: #f5f5f5; cursor: pointer; }
+    input, select { width: 100%; }
+    .controls { margin-bottom: 10px; }
   </style>
 </head>
 <body>
-  <h2>📦 云端库存管理系统</h2>
-  <button onclick="addRow()">➕ 添加物品</button>
-  <button onclick="loadData()">🔄 重新加载</button>
+  <h2>📦 云端库存管理系统（带状态与批量修改）</h2>
+
+  <div class="controls">
+    <button onclick="addRow()">➕ 添加物品</button>
+    <button onclick="loadData()">🔄 重新加载</button>
+    <select id="bulk-status">
+      <option value="">批量设置状态</option>
+      <option value="国内现货">国内现货</option>
+      <option value="日本在库">日本在库</option>
+      <option value="正在发送">正在发送</option>
+    </select>
+    <button onclick="applyBulkStatus()">✅ 应用</button>
+  </div>
+
   <table>
     <thead>
       <tr>
-        <th>物品名</th>
+        <th><input type="checkbox" onclick="toggleSelectAll(this)"></th>
+        <th onclick="sortByName()">物品名 🔁</th>
+        <th>状态</th>
         <th>总数</th>
         <th>单价</th>
         <th>成本</th>
@@ -32,6 +45,7 @@
     </thead>
     <tbody id="table-body"></tbody>
   </table>
+
   <script src="script.js"></script>
 </body>
 </html>
